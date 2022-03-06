@@ -16,7 +16,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 export class ClockComponent implements OnInit {
   
 
-  ring1 = this.describeArc(20, 20, 100, 0, 270)
+  ring1 = this.describeArc(20, 20, 15, 0, 270)
 
   res = document.createElementNS('http://www.w3.org/2000/svg','path');
   
