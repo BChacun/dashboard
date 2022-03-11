@@ -19,9 +19,9 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 export class ClockComponent implements OnInit {
 
-  rings : String = '';
+  rings : string = '';
 
-  ring1 = this.describeArc(20, 20, 15, 0, 270)
+  ring1 = "" /*this.describeArc(20, 20, 15, 0, 270)*/
 
   res = document.createElementNS('http://www.w3.org/2000/svg','path');
 
@@ -50,44 +50,56 @@ export class ClockComponent implements OnInit {
 
   ex :
 
- "0,270,n,30,90"
+ 0,270,n,30,90
 
   */
   onSubmit() {
-    console.log('EZ')
+    
 
     
 
     let i : number = 0;
 
+    let j : number = 0;
+
     let r : number = 1;
 
-    var array = JSON.parse("[" + this.clockdata.value + "]");
+    var array = this.clockdata.value.split(",")/*JSON.parse(array_pipe);*/
 
     let size : number = array.length
 
-    console.log('EZ')
-    console.log(array)
+    for (j=0; j<size; j++) {
+      if (array[j] != "n"){
+        array[j]=Number(array[j])
+      } 
+    }
 
-    while (i < array) {
+    
+
+    while (i < size) {
       console.log('it')
       if (array[i] == "n") {
         r++;
+        this.rings += " "
+        i++;
       } else {
         this.rings += this.describeArc(20, 20, 17 - r*2, array[i], array[i+1])
+        console.log(this.rings)
+
+        i++;
+        i++;
       }
 
 
 
-      i++;
-      i++;
+      
     }
 
     var path = document.querySelector(".data"); 
     console.log('GRPS TEZRZERZRAZ')
     if (path != null){
-      console.log(this.ring1)
-      path.setAttribute("d", this.ring1); 
+      console.log(this.rings)
+      path.setAttribute("d", this.rings); 
     }
     
     
