@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { FormControl, Validators } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-clock',
@@ -13,12 +15,17 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 
 
+
+
 export class ClockComponent implements OnInit {
-  
+
+  rings : String = '';
 
   ring1 = this.describeArc(20, 20, 15, 0, 270)
 
   res = document.createElementNS('http://www.w3.org/2000/svg','path');
+
+  clockdata = new FormControl();
   
 
 
@@ -30,8 +37,61 @@ export class ClockComponent implements OnInit {
       }
 
 
-  Style () {
-    return this.ring1
+  Style() {
+
+    /*return this.rings*/
+  }
+
+  /*
+  On veut de la data de la forme :
+  - string
+
+  - pair de 2 représentant les durées
+
+  ex :
+
+ "0,270,n,30,90"
+
+  */
+  onSubmit() {
+    console.log('EZ')
+
+    
+
+    let i : number = 0;
+
+    let r : number = 1;
+
+    var array = JSON.parse("[" + this.clockdata.value + "]");
+
+    let size : number = array.length
+
+    console.log('EZ')
+    console.log(array)
+
+    while (i < array) {
+      console.log('it')
+      if (array[i] == "n") {
+        r++;
+      } else {
+        this.rings += this.describeArc(20, 20, 17 - r*2, array[i], array[i+1])
+      }
+
+
+
+      i++;
+      i++;
+    }
+
+    var path = document.querySelector(".data"); 
+    console.log('GRPS TEZRZERZRAZ')
+    if (path != null){
+      console.log(this.ring1)
+      path.setAttribute("d", this.ring1); 
+    }
+    
+    
+  
   }
 
 

@@ -6,12 +6,24 @@
         <line x1="15" y1="0" x2="16" y2="0" />
         
     </g>    
-    <path [attr.d]="Style()"></path>
+    <path [attr.d]="Style()" color="blue" class="data"></path>
     
   <line x1="0" y1="0" x2="18" y2="0" class="redline" />
 
   <circle cx="20" cy="20" r="0.7" class="pin" />
 
 </svg>
+
+<br>
+<br>
+<br>
+
+
+
+<input [formControl]="clockdata">
+
+<button
+    type="submit"
+    (click)="onSubmit()">SUBMIT</button>
 
   

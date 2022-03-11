@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ClockComponent } from './clock/clock.component';
 
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -14,7 +16,10 @@ import { ClockComponent } from './clock/clock.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    FormsModule,
+    ReactiveFormsModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
