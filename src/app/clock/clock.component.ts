@@ -83,7 +83,7 @@ export class ClockComponent implements OnInit {
         this.rings += " "
         i++;
       } else {
-        this.rings += this.describeArc(20, 20, 17 - r*2, array[i], array[i+1])
+        this.rings += this.describeArc(20, 20, 19 - r*2, array[i], array[i+1])
         console.log(this.rings)
 
         i++;
