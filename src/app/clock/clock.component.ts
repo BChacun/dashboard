@@ -19,9 +19,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 export class ClockComponent implements OnInit {
 
-  rings : string = '';
-
-  ring1 = "" /*this.describeArc(20, 20, 15, 0, 270)*/
+  legend = ["","","","",""]
 
   res = document.createElementNS('http://www.w3.org/2000/svg','path');
 
@@ -62,30 +60,73 @@ export class ClockComponent implements OnInit {
 
     let j : number = 0;
 
-    let r : number = 1;
+    let r : number = 0;
 
     var array = this.clockdata.value.split(",")/*JSON.parse(array_pipe);*/
 
     let size : number = array.length
-
-    for (j=0; j<size; j++) {
-      if (array[j] != "n"){
-        array[j]=Number(array[j])
-      } 
-    }
+    
 
     
 
-    while (i < size) {
-      console.log('it')
-      if (array[i] == "n") {
-        r++;
-        this.rings += " "
-        i++;
+    while (j<size) {
+      if (array[j] != "n"){
+        array[j]=Number(array[j])
+        
       } else {
-        this.rings += this.describeArc(20, 20, 19 - r*2, array[i], array[i+1])
-        console.log(this.rings)
+        j++;
+        j++;
+      }
 
+      j++;
+    }
+
+    var curr_path = ""
+
+
+    
+
+
+    while (i < size) {
+      
+      if (array[i] == "n") {
+
+        var path_current = document.querySelector('.data'+r); 
+        
+        if (path_current != null){
+          
+          
+          path_current.setAttribute("d", curr_path); 
+          path_current.setAttribute('stroke', curr_color);
+          
+          
+        }
+
+
+        var curr_path = "";
+        
+        r++;
+        var curr_color = array[i+1];
+        this.legend[r] += array[i+2];
+
+        var legend_current = document.querySelector('.legend'+r); 
+        if (legend_current != null){
+          legend_current.setAttribute('style',"color:"+curr_color);  
+        }
+        
+
+
+
+        i++;
+        i++;
+        i++;
+        
+      } else {
+
+        curr_path += this.describeArc(20, 20, 19 - r*2, array[i], array[i+1]);
+
+
+        
         i++;
         i++;
       }
@@ -95,12 +136,18 @@ export class ClockComponent implements OnInit {
       
     }
 
-    var path = document.querySelector(".data"); 
-    console.log('GRPS TEZRZERZRAZ')
-    if (path != null){
-      console.log(this.rings)
-      path.setAttribute("d", this.rings); 
-    }
+    
+    var path_current = document.querySelector('.data'+r); 
+        
+      if (path_current != null){
+          
+          
+          path_current.setAttribute("d", curr_path); 
+          path_current.setAttribute('stroke', curr_color);
+          
+          
+      }
+  
     
     
   

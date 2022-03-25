@@ -5,8 +5,14 @@
     <g class="marks">
         <line x1="15" y1="0" x2="16" y2="0" />
         
-    </g>    
-    <path [attr.d]="Style()" color="blue" class="data"></path>
+    </g>
+    
+    
+    <path  stroke="black" class="data1" ></path>
+    <path  stroke="black" class="data2" ></path>
+    <path  stroke="black" class="data3" ></path>
+    <path  stroke="black" class="data4" ></path>
+    <path  stroke="black" class="data5" ></path>
     
   <line x1="0" y1="0" x2="18" y2="0" class="redline" />
 
@@ -19,6 +25,18 @@
 <br>
 
 
+<ul>
+  <li><h6 class = "legend1">{{legend[1]}}</h6></li>
+  <li><h6 class = "legend2">{{legend[2]}}</h6></li>
+  <li><h6 class = "legend3">{{legend[3]}}</h6></li>
+  <li><h6 class = "legend4">{{legend[4]}}</h6></li>
+  <li><h6 class = "legend5">{{legend[5]}}</h6></li>
+</ul>
+
+
+<br>
+<br>
+<br>
 
 <input [formControl]="clockdata">
 
